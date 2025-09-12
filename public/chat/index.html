@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат поддержки</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Форма входа -->
+        <div class="login-form" id="loginForm">
+            <h1>Вход в чат поддержки</h1>
+            <div class="form-group">
+                <input type="text" id="username" placeholder="Имя пользователя">
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Пароль">
+            </div>
+            <button class="login-btn" onclick="login()">Войти</button>
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+
+        <!-- Основной интерфейс приложения -->
+        <div class="app-interface" id="appInterface">
+            <!-- Панель администратора (видна только админам) -->
+            <div class="admin-panel">
+                <div class="admin-header">
+                    <h1>Активные чаты</h1>
+                </div>
+                <div class="rooms-list" id="roomsList">
+                    <div class="waiting-message">Загрузка чатов...</div>
+                </div>
+            </div>
+
+            <!-- Интерфейс чата -->
+            <div class="chat-interface">
+                <div class="chat-header">
+                    <h1 id="chatTitle">Чат поддержки</h1>
+                    <div class="status">
+                        Статус: <span id="status">Подключение...</span>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="messages">
+                    <div class="message system">
+                        <div class="message-header">
+                            <span class="username">Система</span>
+                            <span class="time">12:00</span>
+                        </div>
+                        <div class="message-text">Подключитесь к чату, чтобы начать общение</div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <div class="input-group">
+                        <input type="text" id="messageInput" placeholder="Введите сообщение..." disabled>
+                        <button id="sendButton" disabled>Отправить</button>
+                        <button id="backButton">Назад</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
