@@ -1,689 +1,210 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Техподдержка - ТехноПрофи</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Контейнер для звезд -->
+    <div class="stars-container" id="stars-container"></div>
 
-        body {
-            font-family: 'Inter', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: #0a0a0a;
-            background-color: #ffffff;
-            font-weight: 300;
-        }
-
-        .header-wrapper {
-            background: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo-simple {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: #0a0a0a;
-        }
-
-        .nav-list {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-item-link {
-            color: #0a0a0a;
-            text-decoration: none;
-            font-weight: 400;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-            font-size: 0.95rem;
-        }
-
-        .nav-item-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: 0;
-            left: 0;
-            background-color: #0a0a0a;
-            transition: width 0.3s ease;
-        }
-
-        .nav-item-link:hover:after {
-            width: 100%;
-        }
-
-        .hero-minimal {
-            background: #f8f8f8;
-            color: #0a0a0a;
-            text-align: center;
-            padding: 8rem 2rem;
-            position: relative;
-        }
-
-        .hero-content-minimal {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-title-minimal {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .hero-text-minimal {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            color: #333;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-        }
-
-        .btn-minimal {
-            background: #0a0a0a;
-            color: white;
-            border: 1px solid #0a0a0a;
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-minimal:hover {
-            background: transparent;
-            color: #0a0a0a;
-        }
-
-        .services-minimal {
-            padding: 6rem 2rem;
-            background-color: #fff;
-        }
-
-        .section-header-minimal {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title-minimal {
-            font-size: 2.2rem;
-            color: #0a0a0a;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-            font-weight: 600;
-        }
-
-        .section-title-minimal:after {
-            content: '';
-            position: absolute;
-            width: 40%;
-            height: 2px;
-            background: #0a0a0a;
-            bottom: -15px;
-            left: 30%;
-        }
-
-        .section-desc-minimal {
-            color: #333;
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 2rem auto 0;
-            line-height: 1.8;
-        }
-
-        .services-grid-minimal {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-item-minimal {
-            background: #fff;
-            transition: all 0.3s ease;
-            padding: 2.5rem 2rem;
-            border: 1px solid #e0e0e0;
-            text-align: center;
-        }
-
-        .service-item-minimal:hover {
-            border-color: #0a0a0a;
-        }
-
-        .service-icon-minimal {
-            font-size: 2.5rem;
-            color: #0a0a0a;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-name-minimal {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: #0a0a0a;
-            font-weight: 500;
-        }
-
-        .service-info-minimal {
-            color: #333;
-            line-height: 1.8;
-        }
-
-        .about-minimal {
-            padding: 6rem 2rem;
-            background: #f8f8f8;
-        }
-
-        .about-inner-minimal {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image-minimal {
-            overflow: hidden;
-        }
-
-        .about-image-minimal img {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: grayscale(100%);
-        }
-
-        .about-content-minimal h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: #0a0a0a;
-            font-weight: 600;
-        }
-
-        .about-content-minimal p {
-            margin-bottom: 1.5rem;
-            color: #333;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .stats-grid-minimal {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .stat-block-minimal {
-            text-align: center;
-            padding: 1.5rem;
-            background: #fff;
-            border: 1px solid #e0e0e0;
-        }
-
-        .stat-number-minimal {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: #0a0a0a;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-text-minimal {
-            color: #333;
-            font-weight: 400;
-        }
-
-        .contact-minimal {
-            padding: 6rem 2rem;
-            background: #fff;
-        }
-
-        .contact-inner-minimal {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-details-minimal {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-element-minimal {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .contact-icon-minimal {
-            font-size: 1.3rem;
-            color: #0a0a0a;
-            min-width: 30px;
-        }
-
-        .contact-info-minimal h3 {
-            margin-bottom: 0.5rem;
-            color: #0a0a0a;
-            font-weight: 500;
-        }
-
-        .contact-info-minimal p {
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .form-container-minimal {
-            background: #f8f8f8;
-            padding: 2.5rem;
-        }
-
-        .form-group-minimal {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-input-minimal {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #e0e0e0;
-            font-family: inherit;
-            font-size: 1rem;
-            background: #fff;
-            color: #0a0a0a;
-        }
-
-        .form-input-minimal:focus {
-            outline: none;
-            border-color: #0a0a0a;
-        }
-
-        .btn-dark-minimal {
-            background: #0a0a0a;
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 400;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .btn-dark-minimal:hover {
-            background: #333;
-        }
-
-        .footer-minimal {
-            background: #0a0a0a;
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-inner-minimal {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-        }
-
-        .footer-col-minimal h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .footer-col-minimal h3:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 30px;
-            height: 1px;
-            background: #fff;
-        }
-
-        .footer-links-minimal {
-            list-style: none;
-        }
-
-        .footer-item-minimal {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-link-minimal {
-            color: #ccc;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .footer-link-minimal:hover {
-            color: #fff;
-        }
-
-        .social-minimal {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-icon-minimal {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .social-icon-minimal:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .footer-bottom-minimal {
-            text-align: center;
-            padding-top: 3rem;
-            margin-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ccc;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 992px) {
-            .about-inner-minimal,
-            .contact-inner-minimal {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-inner-minimal {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-list {
-                display: none;
-            }
-            
-            .hero-title-minimal {
-                font-size: 2.2rem;
-            }
-            
-            .footer-inner-minimal {
-                grid-template-columns: 1fr;
-            }
-            
-            .services-grid-minimal {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats-grid-minimal {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header class="header-wrapper">
-        <nav class="nav-inner">
-            <div class="logo-simple">ТехноПрофи</div>
-            <ul class="nav-list">
-                <li><a href="#services" class="nav-item-link">Услуги</a></li>
-                <li><a href="#about" class="nav-item-link">О нас</a></li>
-                <li><a href="#contact" class="nav-item-link">Контакты</a></li>
-            </ul>
-        </nav>
+    <header>
+      <div class="header-container">
+        <div class="header-item">контакты</div>
+        <div class="header-item">цены</div>
+        <div class="header-item">помощь</div>
+        <div class="header-item">блог</div>
+      </div>
     </header>
 
-    <main>
-        <section class="hero-minimal">
-            <div class="hero-content-minimal">
-                <h1 class="hero-title-minimal">Профессиональная IT-поддержка</h1>
-                <p class="hero-text-minimal">Круглосуточная техническая поддержка для бесперебойной работы вашего бизнеса. Минимализм и эффективность в каждом решении.</p>
-                <button onclick="startChat()" class="btn-minimal">
-                    Начать чат с поддержкой
-                </button>
-            </div>
-        </section>
+    <section>
+      <div class="glowing-lines-container">
+        <!-- Первая линия (слева направо) -->
+        <div class="glowing-line-wrapper">
+          <svg
+            class="glowing-line-svg"
+            viewBox="0 0 1200 200"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <defs>
+              <linearGradient
+                id="aurora-gradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="50%" stop-color="#ffffff" />
+                <stop offset="100%" stop-color="#ffffff" />
+              </linearGradient>
+            </defs>
 
-        <section id="services" class="services-minimal">
-            <div class="section-header-minimal">
-                <h2 class="section-title-minimal">Наши услуги</h2>
-                <p class="section-desc-minimal">Мы предоставляем комплексные IT-решения для бизнеса любого масштаба с акцентом на простоту и эффективность.</p>
-            </div>
-            <div class="services-grid-minimal">
-                <div class="service-item-minimal">
-                    <div class="service-icon-minimal">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3 class="service-name-minimal">IT-аутсорсинг</h3>
-                    <p class="service-info-minimal">Полное сопровождение IT-инфраструктуры вашей компании. Мы возьмем на себя все заботы о ваших технологиях.</p>
-                </div>
-                <div class="service-item-minimal">
-                    <div class="service-icon-minimal">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3 class="service-name-minimal">Техническая поддержка</h3>
-                    <p class="service-info-minimal">Круглосуточная помощь по всем техническим вопросам. Быстрое решение проблем с минимальным простоем.</p>
-                </div>
-                <div class="service-item-minimal">
-                    <div class="service-icon-minimal">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="service-name-minimal">Кибербезопасность</h3>
-                    <p class="service-info-minimal">Защита ваших данных и систем от киберугроз. Комплексные решения для обеспечения безопасности.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="about-minimal">
-            <div class="about-inner-minimal">
-                <div class="about-image-minimal">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Наша команда">
-                </div>
-                <div class="about-content-minimal">
-                    <h2>О нашей компании</h2>
-                    <p>ТехноПрофи - это команда профессионалов с более чем 10-летним опытом работы в сфере IT-аутсорсинга. Мы специализируемся на предоставлении комплексных IT-решений для бизнеса.</p>
-                    <p>Наша миссия - обеспечить бесперебойную работу IT-инфраструктуры наших клиентов, чтобы они могли сосредоточиться на своем основном бизнесе.</p>
-                    
-                    <div class="stats-grid-minimal">
-                        <div class="stat-block-minimal">
-                            <div class="stat-number-minimal">200+</div>
-                            <div class="stat-text-minimal">Довольных клиентов</div>
-                        </div>
-                        <div class="stat-block-minimal">
-                            <div class="stat-number-minimal">24/7</div>
-                            <div class="stat-text-minimal">Поддержка</div>
-                        </div>
-                        <div class="stat-block-minimal">
-                            <div class="stat-number-minimal">10+</div>
-                            <div class="stat-text-minimal">Лет опыта</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact-minimal">
-            <div class="section-header-minimal">
-                <h2 class="section-title-minimal">Свяжитесь с нами</h2>
-                <p class="section-desc-minimal">Готовы помочь вашему бизнесу расти с помощью надежных IT-решений</p>
-            </div>
-            
-            <div class="contact-inner-minimal">
-                <div class="contact-details-minimal">
-                    <div class="contact-element-minimal">
-                        <div class="contact-icon-minimal">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-info-minimal">
-                            <h3>Адрес</h3>
-                            <p>г. Москва, ул. Техническая, д. 25, офис 304</p>
-                        </div>
-                    </div>
-                    <div class="contact-element-minimal">
-                        <div class="contact-icon-minimal">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-info-minimal">
-                            <h3>Телефон</h3>
-                            <p>+7 (495) 123-45-67</p>
-                        </div>
-                    </div>
-                    <div class="contact-element-minimal">
-                        <div class="contact-icon-minimal">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-info-minimal">
-                            <h3>Email</h3>
-                            <p>info@technoprofi.ru</p>
-                        </div>
-                    </div>
-                    <div class="contact-element-minimal">
-                        <div class="contact-icon-minimal">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-info-minimal">
-                            <h3>Режим работы</h3>
-                            <p>Пн-Пт: 9:00 - 18:00<br>Сб-Вс: техническая поддержка 24/7</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-container-minimal">
-                    <h3>Отправить сообщение</h3>
-                    <form>
-                        <div class="form-group-minimal">
-                            <input type="text" class="form-input-minimal" placeholder="Ваше имя" required>
-                        </div>
-                        <div class="form-group-minimal">
-                            <input type="email" class="form-input-minimal" placeholder="Ваш email" required>
-                        </div>
-                        <div class="form-group-minimal">
-                            <input type="text" class="form-input-minimal" placeholder="Тема сообщения" required>
-                        </div>
-                        <div class="form-group-minimal">
-                            <textarea class="form-input-minimal" rows="5" placeholder="Ваше сообщение" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-dark-minimal">Отправить сообщение</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer-minimal">
-        <div class="footer-inner-minimal">
-            <div class="footer-col-minimal">
-                <h3>О компании</h3>
-                <p>ТехноПрофи предоставляет профессиональные IT-услуги для бизнеса с 2010 года. Мы заботимся о вашей технологической инфраструктуре.</p>
-                <div class="social-minimal">
-                    <a href="#" class="social-icon-minimal"><i class="fab fa-vk"></i></a>
-                    <a href="#" class="social-icon-minimal"><i class="fab fa-telegram"></i></a>
-                    <a href="#" class="social-icon-minimal"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-col-minimal">
-                <h3>Услуги</h3>
-                <ul class="footer-links-minimal">
-                    <li class="footer-item-minimal"><a href="#" class="footer-link-minimal">IT-аутсорсинг</a></li>
-                    <li class="footer-item-minimal"><a href="#" class="footer-link-minimal">Техническая поддержка</a></li>
-                    <li class="footer-item-minimal"><a href="#" class="footer-link-minimal">Кибербезопасность</a></li>
-                    <li class="footer-item-minimal"><a href="#" class="footer-link-minimal">Облачные решения</a></li>
-                    <li class="footer-item-minimal"><a href="#" class="footer-link-minimal">Разработка ПО</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col-minimal">
-                <h3>Быстрые ссылки</h3>
-                <ul class="footer-links-minimal">
-                    <li class="footer-item-minimal"><a href="#" class="footer-link-minimal">Главная</a></li>
-                    <li class="footer-item-minimal"><a href="#services" class="footer-link-minimal">Услуги</a></li>
-                    <li class="footer-item-minimal"><a href="#about" class="footer-link-minimal">О нас</a></li>
-                    <li class="footer-item-minimal"><a href="#contact" class="footer-link-minimal">Контакты</a></li>
-                    <li class="footer-item-minimal"><a href="#" class="footer-link-minimal">Блог</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col-minimal">
-                <h3>Подписка</h3>
-                <p>Подпишитесь на нашу рассылку, чтобы получать последние новости и обновления.</p>
-                <form>
-                    <div class="form-group-minimal">
-                        <input type="email" class="form-input-minimal" placeholder="Ваш email" required>
-                    </div>
-                    <button type="submit" class="btn-dark-minimal">Подписаться</button>
-                </form>
-            </div>
+            <path
+              class="aurora-line-left"
+              d="M -100,100 
+                         C 200,30 350,270 600,100
+                         S 850,170 1000,100
+                         S 1150,50 1300,100"
+              stroke="url(#aurora-gradient)"
+              stroke-width="12"
+              fill="none"
+              stroke-linecap="round"
+            />
+          </svg>
         </div>
-        
-        <div class="footer-bottom-minimal">
-            <p>&copy; 2024 ТехноПрофи. Все права защищены.</p>
-        </div>
-    </footer>
 
-    <script>
-        function startChat() {
-            // Имитация начала чата
-            alert("Чат с поддержкой будет запущен в новом окне. Спасибо за обращение!");
-             window.open('/chat', '_blank');
-        }
-        
-        // Плавная прокрутка для якорных ссылок
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
+        <div class="overlay">
+          <img
+            class="abstract-bg-left"
+            src="img/ARBITA_Абстракция_008 1.png"
+            alt=""
+          />
+          <img
+            class="abstract-bg-right"
+            src="img/ARBITA_Абстракция_004 1.png"
+            alt=""
+          />
+        </div>
+
+        <div class="support-hero">
+          <h1>Готовность к будущему технической поддержки</h1>
+          <p>
+            Развивайте свой бизнес с помощью передовых ИТ-решений. Поддержка в
+            режиме 24/7, продвинутая автоматизация и полная интеграция.
+          </p>
+          <button>
+            <h2>В ЧАТ <img src="img/Arrow 1.png" alt="" /></h2>
+          </button>
+        </div>
+
+        <!-- Вторая линия (справа налево) -->
+        <div class="glowing-line-wrapper">
+          <svg
+            class="glowing-line-svg"
+            viewBox="0 0 1200 200"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <defs>
+              <linearGradient
+                id="cosmic-gradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="50%" stop-color="#ffffff" />
+                <stop offset="100%" stop-color="#ffffff" />
+              </linearGradient>
+            </defs>
+
+            <path
+              class="cosmic-line-right"
+              d="M 1300,100 
+                         C 1150,50 1000,100 850,170
+                         S 600,100 350,270
+                         S 200,30 -100,100"
+              stroke="url(#cosmic-gradient)"
+              stroke-width="12"
+              fill="none"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section>
+
+      
+      <div class="advantages-dark-container">
+        <h1 class="advantage-years">10+ лет опыта</h1>
+        <h1 class="advantage-transparency">Полная прозрачность</h1>
+        <h1 class="advantage-worktime">Работаем 24/7</h1>
+        <img
+          class="advantage-image"
+          src="img/ARBITA_Абстракция_018 1.png"
+          alt=""
+        />
+         <h1 class="advantage-specialists">50+ специалистов</h1>
+                 <h1 class="advantage-companies">Более 50 компаний доверяют нам</h1>
+        <h1 class="advantage-economy">Экономия до 30% бюджета</h1>
+       
+
+      </div>
+    </section>
+
+
+
+
+
+<section class="services">
+  <div class="services__container">
+    <div class="services__header">
+      <h1 >
+        Наши услуги
+      </h1>
+      <p >
+        «То, что помогает вашему бизнесу работать без перебоев»
+      </p>
+    </div>
+
+    <div class="services__flex-1">
+
+      <div class="service-card-row-1">
+        <img class="service-card__icon" src="img/Mask group.png" alt="">
+        <h2 class="service-card__title">
+          Администрирование
+        </h2>
+        <p class="service-card__description">
+          Полное управление серверами и сетями с упреждающим мониторингом
+        </p>
+      </div>
+
+      <div class="service-card-row-2">
+        <img class="service-card__icon" src="img/Mask group-1.png" alt="">
+        <h2 class="service-card__title">
+          Облако
+        </h2>
+        <p class="service-card__description">
+          Плавный переход к облачной инфраструктуре с минимальным временем простоя.
+        </p>
+      </div>
+
+    </div>
+
+<div class="services__flex-2">
+
+      <div class="service-card-row2-1">
+        <img class="service-card__icon" src="img/Mask group-2.png" alt="">
+        <h2 class="service-card__title">
+          Кибербезопасность
+        </h2>
+        <p class="service-card__description">
+          Расширенные услуги по защите от угроз и аудиту безопасности
+        </p>
+      </div>
+
+      <div class="service-card-row2-2">
+        <img class="service-card__icon" src="img/Mask group-3.png" alt="">
+        <h2 class="service-card__title">
+          Разработка на заказ
+        </h2>
+        <p class="service-card__description">
+          Индивидуальные программные решения, разработанные с учетом ваших конкретных потребностей
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+    <script src="app.js"></script>
+  </body>
 </html>

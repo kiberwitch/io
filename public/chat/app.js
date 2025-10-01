@@ -3,7 +3,7 @@ let currentUser = null;
 let currentRoom = null;
 let userRole = null;
 
-// Элементы DOM
+
 const loginForm = document.getElementById("loginForm");
 const appInterface = document.getElementById("appInterface");
 const roomsList = document.getElementById("roomsList");
@@ -65,14 +65,13 @@ function addMessage(data) {
 function joinRoom(roomId, roomData) {
   console.log("Клиент: попытка войти в комнату", roomId);
 
-  // Если админ уже в другой комнате, сначала выходим из нее
   if (currentRoom && currentRoom !== roomId) {
     socket.emit("leave room", currentRoom);
   }
 
   socket.emit("join room", roomId);
 
-  // Обновляем заголовок чата для админа
+
   if (userRole === "admin" && roomData) {
     chatTitle.textContent = `Чат с ${roomData.username}`;
   }
@@ -82,19 +81,18 @@ function leaveCurrentRoom() {
   if (currentRoom) {
     socket.emit("leave room", currentRoom);
 
-    // Очищаем чат и сбрасываем состояние
+
     messages.innerHTML = "";
     messageInput.value = "";
     messageInput.disabled = false;
     sendButton.disabled = true;
     currentRoom = null;
 
-    // Снимаем выделение со всех комнат
     document.querySelectorAll(".room-item").forEach((item) => {
       item.classList.remove("active");
     });
 
-    // Возвращаем стандартный заголовок
+
     chatTitle.textContent = "Чат поддержки";
   }
 }
@@ -145,7 +143,7 @@ function updateRoomsList(rooms) {
   });
 }
 
-// Обработчики событий
+
 messageInput.addEventListener("input", () => {
   sendButton.disabled = !messageInput.value.trim();
 });
@@ -160,7 +158,7 @@ sendButton.addEventListener("click", sendMessage);
 
 backButton.addEventListener("click", leaveCurrentRoom);
 
-// Socket.io события
+
 socket.on("login success", (data) => {
   currentUser = data.username;
   userRole = data.role;
@@ -169,16 +167,15 @@ socket.on("login success", (data) => {
   errorMessage.style.display = "none";
   appInterface.style.display = "flex";
 
-  // Устанавливаем класс в зависимости от роли
   if (userRole === "admin") {
     appInterface.classList.add("admin-view");
     appInterface.classList.remove("user-view");
-    // Запрашиваем актуальный список комнат
+
     socket.emit("get rooms");
   } else {
     appInterface.classList.add("user-view");
     appInterface.classList.remove("admin-view");
-    // Для пользователя автоматически создаем комнату
+
     socket.emit("create room");
   }
 
@@ -194,7 +191,7 @@ socket.on("room created", (roomId) => {
   currentRoom = roomId;
   console.log("Комната создана:", roomId);
 
-  // Для пользователя разблокируем поле ввода и обновляем заголовок
+
   if (userRole === "user") {
     messageInput.disabled = false;
     sendButton.disabled = true;
@@ -220,7 +217,7 @@ socket.on("admin rooms update", (rooms) => {
 
 socket.on("new room", (roomData) => {
   console.log("Новая комната:", roomData);
-  // При получении уведомления о новой комнате запрашиваем обновленный список
+
   if (userRole === "admin") {
     socket.emit("get rooms");
   }
@@ -230,11 +227,10 @@ socket.on("room joined", (data) => {
   console.log("Успешно вошли в комнату:", data.roomId);
   currentRoom = data.roomId;
 
-  // Разблокируем поле ввода
+
   messageInput.disabled = false;
   sendButton.disabled = !messageInput.value.trim();
 
-  // Обновляем выделение активной комнаты
   document.querySelectorAll(".room-item").forEach((item) => {
     item.classList.remove("active");
     if (item.dataset.roomId === data.roomId) {
@@ -254,7 +250,7 @@ socket.on("room history", (history) => {
 socket.on("chat message", addMessage);
 
 socket.on("room closed", (roomId) => {
-  // Если закрыта текущая комната
+
   if (roomId === currentRoom) {
     addMessage({
       username: "Система",
@@ -266,14 +262,14 @@ socket.on("room closed", (roomId) => {
     sendButton.disabled = true;
   }
 
-  // Обновляем список комнат для админа
+
   if (userRole === "admin") {
     socket.emit("get rooms");
   }
 });
 
 socket.on("room left", () => {
-  // Сервер подтвердил выход из комнаты
+
   messages.innerHTML = "";
   messageInput.value = "";
   messageInput.disabled = false;
@@ -281,7 +277,6 @@ socket.on("room left", () => {
   currentRoom = null;
   chatTitle.textContent = "Чат поддержки";
 
-  // Для админа обновляем список комнат
   if (userRole === "admin") {
     socket.emit("get rooms");
   }
@@ -299,7 +294,7 @@ socket.on("disconnect", () => {
   console.log("Отключено от сервера");
 });
 
-// Вход по Enter
+
 document.getElementById("username").addEventListener("keypress", (e) => {
   if (e.key === "Enter") login();
 });
@@ -308,7 +303,7 @@ document.getElementById("password").addEventListener("keypress", (e) => {
   if (e.key === "Enter") login();
 });
 
-// Глобальные функции для кнопок
+
 window.joinRoom = joinRoom;
 window.closeRoom = closeRoom;
 window.login = login;

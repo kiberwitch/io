@@ -24,7 +24,7 @@
             gap: 20px;
         }
 
-        /* Форма логина */
+       
         .login-form {
             background: #111;
             padding: 40px;
@@ -93,14 +93,14 @@
             display: none;
         }
 
-        /* Общий контейнер для админ-панели и чата */
+
         .app-interface {
             display: none;
             gap: 20px;
             height: 80vh;
         }
 
-        /* Админ панель (список комнат) */
+ 
         .admin-panel {
             background: #111;
             border-radius: 8px;
@@ -204,7 +204,7 @@
             background: #444;
         }
 
-        /* Интерфейс чата */
+
         .chat-interface {
             background: #111;
             border-radius: 8px;
@@ -337,7 +337,7 @@
             font-size: 14px;
         }
 
-        /* Для пользователя скрываем админ-панель */
+ 
         .user-view .admin-panel {
             display: none;
         }
@@ -345,7 +345,6 @@
             flex: 1;
         }
 
-        /* Скрываем кнопку Назад по умолчанию */
         #backButton {
             display: none;
             background: #333;
@@ -356,17 +355,17 @@
             background: #444;
         }
 
-        /* Скрываем кнопку Назад для админа */
+
         .admin-view #backButton {
             display: none !important;
         }
 
-        /* Показываем кнопку Назад для пользователей */
+
         .user-view #backButton {
             display: block;
         }
 
-        /* Стили скроллбара */
+
         ::-webkit-scrollbar {
             width: 6px;
         }

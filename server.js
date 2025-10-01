@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-// Статические файлы
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
