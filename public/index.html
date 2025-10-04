@@ -6,9 +6,13 @@
     <title></title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <!-- Контейнер для звезд -->
-    <div class="stars-container" id="stars-container"></div>
+
+    <div class="stars-container" id="stars-container">
+      <img class="background__img" src="img/background.png" alt="" />
+    </div>
 
     <header>
       <div class="header-container">
@@ -81,6 +85,7 @@
         </div>
 
         <!-- Вторая линия (справа налево) -->
+
         <div class="glowing-line-wrapper">
           <svg
             class="glowing-line-svg"
@@ -104,9 +109,9 @@
             <path
               class="cosmic-line-right"
               d="M 1300,100 
-                         C 1150,50 1000,100 850,170
-                         S 600,100 350,270
-                         S 200,30 -100,100"
+         C 1150,170 1000,100 850,30
+         S 600,270 350,100
+         S 200,150 50,100"
               stroke="url(#cosmic-gradient)"
               stroke-width="12"
               fill="none"
@@ -117,23 +122,70 @@
       </div>
     </section>
 
-    <section>
 
-      
+
+
+
+
+    
+    <section>
+      <div class="advantages-line-container">
+        <svg
+          class="advantages-line-svg"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <defs>
+            <linearGradient
+              id="advantages-gradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+              <stop offset="50%" stop-color="#ffffff" stop-opacity="1" />
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.8" />
+            </linearGradient>
+
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="10" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="blur" />
+                <feMergeNode in="blur" />
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <path
+            class="advantages-diagonal-line"
+            d="M -100,700 
+           C 200,650 400,500 600,400
+           S 800,300 1000,200
+           S 1200,100 1400,50"
+            stroke="url(#advantages-gradient)"
+            stroke-width="15"
+            fill="none"
+            stroke-linecap="round"
+            filter="url(#glow)"
+          />
+        </svg>
+      </div>
       <div class="advantages-dark-container">
-        <h1 class="advantage-years">10+ лет опыта</h1>
         <h1 class="advantage-transparency">Полная прозрачность</h1>
+        <h1 class="advantage-years">10+ лет опыта</h1>
         <h1 class="advantage-worktime">Работаем 24/7</h1>
         <img
           class="advantage-image"
           src="img/ARBITA_Абстракция_018 1.png"
           alt=""
         />
-         <h1 class="advantage-specialists">50+ специалистов</h1>
-                 <h1 class="advantage-companies">Более 50 компаний доверяют нам</h1>
+        <h1 class="advantage-specialists">50+ специалистов</h1>
+        <h1 class="advantage-companies">Более 50 компаний доверяют нам</h1>
         <h1 class="advantage-economy">Экономия до 30% бюджета</h1>
-       
-
       </div>
     </section>
 
@@ -141,69 +193,108 @@
 
 
 
-<section class="services">
-  <div class="services__container">
-    <div class="services__header">
-      <h1 >
-        Наши услуги
-      </h1>
-      <p >
-        «То, что помогает вашему бизнесу работать без перебоев»
-      </p>
-    </div>
 
-    <div class="services__flex-1">
 
-      <div class="service-card-row-1">
-        <img class="service-card__icon" src="img/Mask group.png" alt="">
-        <h2 class="service-card__title">
-          Администрирование
-        </h2>
-        <p class="service-card__description">
-          Полное управление серверами и сетями с упреждающим мониторингом
-        </p>
+    <section class="services">
+      <div class="services-line-container">
+        <svg
+          class="services-line-svg"
+          viewBox="0 0 2000 200"
+
+          preserveAspectRatio="xMidYMid meet" >
+          <defs>
+            <linearGradient
+              id="services-gradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+              <stop offset="50%" stop-color="#ffffff" stop-opacity="1" />
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.8" />
+            </linearGradient>
+          </defs>
+
+          <path
+            class="services-horizontal-line"
+            d="M -200,100 
+         C 150,30 400,170 650,100
+         S 900,50 1150,100
+         S 1400,150 1650,100
+         S 1900,50 2200,100"
+            stroke="url(#services-gradient)"
+            stroke-width="12"
+            fill="none"
+            stroke-linecap="round"
+          />
+        </svg>
       </div>
 
-      <div class="service-card-row-2">
-        <img class="service-card__icon" src="img/Mask group-1.png" alt="">
-        <h2 class="service-card__title">
-          Облако
-        </h2>
-        <p class="service-card__description">
-          Плавный переход к облачной инфраструктуре с минимальным временем простоя.
-        </p>
+      <img
+        class="services-abstract"
+        src="img/ARBITA_Абстракция_017 1.png"
+        alt=""
+      />
+      <div class="services__container">
+        <div class="services__header">
+          <h1>Наши услуги</h1>
+          <p>«То, что помогает вашему бизнесу работать без перебоев»</p>
+        </div>
+
+        <div class="services__flex-1">
+          <div class="service-card-row-1">
+            <img class="service-card__icon" src="img/Mask group.png" alt="" />
+            <div class="service-card__container">
+              <h2 class="service-card__title">Администрирование</h2>
+              <p class="service-card__description">
+                Полное управление серверами и сетями с упреждающим мониторингом
+              </p>
+            </div>
+          </div>
+
+          <div class="service-card-row-2">
+            <img class="service-card__icon" src="img/Mask group-2.png" alt="" />
+            <div class="service-card__container">
+              <h2 class="service-card__title">Облако</h2>
+              <p class="service-card__description">
+                Плавный переход к облачной инфраструктуре с минимальным временем
+                простоя.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="services__flex-2">
+          <div class="service-card-row2-1">
+            <img class="service-card__icon" src="img/Mask group-3.png" alt="" />
+            <div class="service-card__container">
+              <h2 class="service-card__title">Кибербезопасность</h2>
+              <p class="service-card__description">
+                Расширенные услуги по защите от угроз и аудиту безопасности
+              </p>
+            </div>
+          </div>
+
+          <div class="service-card-row2-2">
+            <img class="service-card__icon" src="img/Mask group-1.png" alt="" />
+            <div class="service-card__container">
+              <h2 class="service-card__title">Разработка на заказ</h2>
+              <p class="service-card__description">
+                Индивидуальные программные решения, разработанные с учетом ваших
+                конкретных потребностей
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-    </div>
+    <section class="more-info">
+      <img src="img/ARBITA_Абстракция_003 1.png" alt="" />
 
-<div class="services__flex-2">
-
-      <div class="service-card-row2-1">
-        <img class="service-card__icon" src="img/Mask group-2.png" alt="">
-        <h2 class="service-card__title">
-          Кибербезопасность
-        </h2>
-        <p class="service-card__description">
-          Расширенные услуги по защите от угроз и аудиту безопасности
-        </p>
-      </div>
-
-      <div class="service-card-row2-2">
-        <img class="service-card__icon" src="img/Mask group-3.png" alt="">
-        <h2 class="service-card__title">
-          Разработка на заказ
-        </h2>
-        <p class="service-card__description">
-          Индивидуальные программные решения, разработанные с учетом ваших конкретных потребностей
-        </p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-
+      <a href=""> НАЖМИ СЮДА </a>
+    </section>
 
     <script src="app.js"></script>
   </body>
