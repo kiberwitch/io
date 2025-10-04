@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>Техническая поддержка будущего</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <!-- Контейнер для звезд -->
-
     <div class="stars-container" id="stars-container">
-      <img class="background__img" src="img/background.png" alt="" />
+      <img
+        class="background__img"
+        src="img/background.png"
+        alt=""
+        loading="lazy"
+      />
     </div>
 
     <header>
@@ -23,7 +27,7 @@
       </div>
     </header>
 
-    <section>
+    <section id="main-section" class="animated">
       <div class="glowing-lines-container">
         <!-- Первая линия (слева направо) -->
         <div class="glowing-line-wrapper">
@@ -44,10 +48,24 @@
                 <stop offset="50%" stop-color="#ffffff" />
                 <stop offset="100%" stop-color="#ffffff" />
               </linearGradient>
+              <filter
+                id="aurora-filter"
+                x="-20%"
+                y="-20%"
+                width="140%"
+                height="140%"
+              >
+                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
             </defs>
 
             <path
-              class="aurora-line-left"
+              class="aurora-line-left line-animated"
               d="M -100,100 
                          C 200,30 350,270 600,100
                          S 850,170 1000,100
@@ -63,13 +81,15 @@
         <div class="overlay">
           <img
             class="abstract-bg-left"
-            src="img/ARBITA_Абстракция_008 1.png"
+            src="https://i.postimg.cc/tghybtJ3/ARBITA-008-1.png"
             alt=""
+            loading="lazy"
           />
           <img
             class="abstract-bg-right"
-            src="img/ARBITA_Абстракция_004 1.png"
+            src="https://i.postimg.cc/3JHq55pL/ARBITA-004-1.webp"
             alt=""
+            loading="lazy"
           />
         </div>
 
@@ -80,12 +100,14 @@
             режиме 24/7, продвинутая автоматизация и полная интеграция.
           </p>
           <button>
-            <h2>В ЧАТ <img src="img/Arrow 1.png" alt="" /></h2>
+            <h2>
+              <a href="chat/index.html">В ЧАТ</a>
+              <img src="img/Arrow 1.png" alt="" loading="lazy" />
+            </h2>
           </button>
         </div>
 
         <!-- Вторая линия (справа налево) -->
-
         <div class="glowing-line-wrapper">
           <svg
             class="glowing-line-svg"
@@ -104,14 +126,30 @@
                 <stop offset="50%" stop-color="#ffffff" />
                 <stop offset="100%" stop-color="#ffffff" />
               </linearGradient>
+              <filter
+                id="cosmic-filter"
+                x="-20%"
+                y="-20%"
+                width="140%"
+                height="140%"
+              >
+                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
             </defs>
 
             <path
-              class="cosmic-line-right"
+              class="cosmic-line-right line-animated"
               d="M 1300,100 
          C 1150,170 1000,100 850,30
          S 600,270 350,100
-         S 200,150 50,100"
+         S 200,150 50,100
+            S -100,50 -250,100"
+         
               stroke="url(#cosmic-gradient)"
               stroke-width="12"
               fill="none"
@@ -122,13 +160,7 @@
       </div>
     </section>
 
-
-
-
-
-
-    
-    <section>
+    <section id="advantages-section">
       <div class="advantages-line-container">
         <svg
           class="advantages-line-svg"
@@ -148,10 +180,15 @@
               <stop offset="100%" stop-color="#ffffff" stop-opacity="0.8" />
             </linearGradient>
 
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="10" result="blur" />
+            <filter
+              id="advantages-glow"
+              x="-30%"
+              y="-30%"
+              width="160%"
+              height="160%"
+            >
+              <feGaussianBlur stdDeviation="8" result="blur" />
               <feMerge>
-                <feMergeNode in="blur" />
                 <feMergeNode in="blur" />
                 <feMergeNode in="blur" />
                 <feMergeNode in="blur" />
@@ -170,18 +207,20 @@
             stroke-width="15"
             fill="none"
             stroke-linecap="round"
-            filter="url(#glow)"
+            filter="url(#advantages-glow)"
           />
         </svg>
       </div>
+      
       <div class="advantages-dark-container">
         <h1 class="advantage-transparency">Полная прозрачность</h1>
         <h1 class="advantage-years">10+ лет опыта</h1>
         <h1 class="advantage-worktime">Работаем 24/7</h1>
         <img
           class="advantage-image"
-          src="img/ARBITA_Абстракция_018 1.png"
+          src="https://i.postimg.cc/TYXsMMm9/ARBITA-018-1.webp"
           alt=""
+          loading="lazy"
         />
         <h1 class="advantage-specialists">50+ специалистов</h1>
         <h1 class="advantage-companies">Более 50 компаний доверяют нам</h1>
@@ -189,19 +228,13 @@
       </div>
     </section>
 
-
-
-
-
-
-
-    <section class="services">
+    <section id="services-section" class="services">
       <div class="services-line-container">
         <svg
           class="services-line-svg"
           viewBox="0 0 2000 200"
-
-          preserveAspectRatio="xMidYMid meet" >
+          preserveAspectRatio="xMidYMid meet"
+        >
           <defs>
             <linearGradient
               id="services-gradient"
@@ -214,6 +247,21 @@
               <stop offset="50%" stop-color="#ffffff" stop-opacity="1" />
               <stop offset="100%" stop-color="#ffffff" stop-opacity="0.8" />
             </linearGradient>
+
+            <filter
+              id="services-glow"
+              x="-20%"
+              y="-20%"
+              width="140%"
+              height="140%"
+            >
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
           </defs>
 
           <path
@@ -227,14 +275,16 @@
             stroke-width="12"
             fill="none"
             stroke-linecap="round"
+            filter="url(#services-glow)"
           />
         </svg>
       </div>
 
       <img
         class="services-abstract"
-        src="img/ARBITA_Абстракция_017 1.png"
+        src="https://i.postimg.cc/28ftRRvh/ARBITA-017-1.webp"
         alt=""
+        loading="lazy"
       />
       <div class="services__container">
         <div class="services__header">
@@ -244,7 +294,12 @@
 
         <div class="services__flex-1">
           <div class="service-card-row-1">
-            <img class="service-card__icon" src="img/Mask group.png" alt="" />
+            <img
+              class="service-card__icon"
+              src="img/Mask group.png"
+              alt=""
+              loading="lazy"
+            />
             <div class="service-card__container">
               <h2 class="service-card__title">Администрирование</h2>
               <p class="service-card__description">
@@ -254,7 +309,12 @@
           </div>
 
           <div class="service-card-row-2">
-            <img class="service-card__icon" src="img/Mask group-2.png" alt="" />
+            <img
+              class="service-card__icon"
+              src="img/Mask group-2.png"
+              alt=""
+              loading="lazy"
+            />
             <div class="service-card__container">
               <h2 class="service-card__title">Облако</h2>
               <p class="service-card__description">
@@ -267,7 +327,12 @@
 
         <div class="services__flex-2">
           <div class="service-card-row2-1">
-            <img class="service-card__icon" src="img/Mask group-3.png" alt="" />
+            <img
+              class="service-card__icon"
+              src="img/Mask group-3.png"
+              alt=""
+              loading="lazy"
+            />
             <div class="service-card__container">
               <h2 class="service-card__title">Кибербезопасность</h2>
               <p class="service-card__description">
@@ -277,7 +342,12 @@
           </div>
 
           <div class="service-card-row2-2">
-            <img class="service-card__icon" src="img/Mask group-1.png" alt="" />
+            <img
+              class="service-card__icon"
+              src="img/Mask group-1.png"
+              alt=""
+              loading="lazy"
+            />
             <div class="service-card__container">
               <h2 class="service-card__title">Разработка на заказ</h2>
               <p class="service-card__description">
@@ -290,10 +360,30 @@
       </div>
     </section>
 
-    <section class="more-info">
-      <img src="img/ARBITA_Абстракция_003 1.png" alt="" />
+    <!-- Секция 3D модели -->
+    <section id="model-section" class="model-section-3d">
+      <div class="model-container">
+        <script
+          type="module"
+          src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+          defer
+        ></script>
 
-      <a href=""> НАЖМИ СЮДА </a>
+        <model-viewer
+          src="img/drun.gltf"
+          alt="3D модель нашей услуги"
+          auto-rotate
+          camera-controls
+          environment-image="neutral"
+          shadow-intensity="1"
+          style="width: 100%; height: 600px"
+          ar
+          ios-src="model.usdz"
+          loading="lazy"
+        >
+        </model-viewer>
+      </div>
+      <h1 class="title-model-section">НАЖМИ СЮДА</h1>
     </section>
 
     <script src="app.js"></script>

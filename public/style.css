@@ -104,16 +104,21 @@ header {
   width: 100%;
   height: 250px;
   overflow: visible;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .aurora-line-left {
-  filter: blur(5px) drop-shadow(0 0 20px rgba(255, 255, 255, 0.8))
-    drop-shadow(0 0 40px rgba(255, 255, 255, 0.4))
-    drop-shadow(0 0 60px rgba(255, 255, 255, 0.2));
+  filter: url(#aurora-filter);
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
+  stroke-width: 12px;
+  will-change: stroke-dashoffset;
+  transform: translateZ(0);
+}
+
+.line-animated.aurora-line-left {
   animation: auroraDrawLeft 10s ease-out forwards;
-  stroke-width: 20px;
 }
 
 @keyframes auroraDrawLeft {
@@ -123,13 +128,16 @@ header {
 }
 
 .cosmic-line-right {
-  filter: blur(5px) drop-shadow(0 0 20px rgba(255, 255, 255, 0.8))
-    drop-shadow(0 0 40px rgba(255, 255, 255, 0.4))
-    drop-shadow(0 0 60px rgba(255, 255, 255, 0.2));
+  filter: url(#cosmic-filter);
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
+  stroke-width: 12px;
+  will-change: stroke-dashoffset;
+  transform: translateZ(0);
+}
+
+.line-animated.cosmic-line-right {
   animation: cosmicDrawRight 10s ease-out forwards;
-  stroke-width: 20px;
 }
 
 @keyframes cosmicDrawRight {
@@ -138,14 +146,21 @@ header {
   }
 }
 
+
 .abstract-bg-left {
   position: absolute;
   width: 935px;
   top: 30px;
   left: -400px;
   z-index: -1;
+  opacity: 0;
+  transform: translateX(-100px) rotate(-180deg);
+}
+
+.animated .abstract-bg-left {
   opacity: 1;
-  animation: fadeIn 1s ease-out 0.5s forwards, slowRotate 120s linear infinite;
+  transform: translateX(0) rotate(0);
+  transition: all 1.5s ease-out;
 }
 
 .abstract-bg-right {
@@ -154,8 +169,23 @@ header {
   top: 330px;
   right: -350px;
   z-index: -1;
+  opacity: 0;
+  transform: translateX(100px) rotate(180deg);
+}
+
+.animated .abstract-bg-right {
   opacity: 1;
-  animation: fadeIn 1s ease-out 1s forwards, slowRotate 120s linear infinite;
+  transform: translateX(0) rotate(0);
+  transition: all 1.5s ease-out;
+}
+
+/* Медленное вращение после появления */
+.animated .abstract-bg-left {
+  animation: slowRotate 120s linear infinite 1.5s;
+}
+
+.animated .abstract-bg-right {
+  animation: slowRotate 120s linear infinite 1.5s;
 }
 
 @keyframes slowRotate {
@@ -176,6 +206,14 @@ header {
   padding: 60px 30px;
   margin: 0 auto;
   max-width: 1440px;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.animated .support-hero {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1s ease-out;
 }
 
 .support-hero h1 {
@@ -230,19 +268,24 @@ header {
     inset 0px 0px 10px 5px rgba(255, 255, 255, 0.05);
 }
 
-.support-hero button h2 {
-  text-align: center;
+
+
+.support-hero button a {
+    text-align: center;
   color: white;
   font-size: 24px;
   font-family: Montserrat;
   font-weight: 700;
   line-height: 74px;
   word-wrap: break-word;
-}
+text-decoration-line: none;
+ }
+
 
 .support-hero button img {
   padding-left: 20px;
 }
+
 
 .advantages-line-container {
   position: absolute;
@@ -252,26 +295,36 @@ header {
   left: 0;
   pointer-events: none;
   z-index: -1;
+  transform: translateZ(0);
+  opacity: 0;
+}
+
+.animated .advantages-line-container {
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
 }
 
 .advantages-line-svg {
   width: 100%;
   height: 100%;
   overflow: visible;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .advantages-diagonal-line {
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
-  animation: advantagesDrawLine 8s ease-out forwards;
-  stroke-width: 10px;
+  stroke-width: 15px;
   stroke: #ffffff;
-  filter: drop-shadow(0 0 30px rgb(255, 255, 255))
-    drop-shadow(0 0 60px rgb(255, 255, 255))
-    drop-shadow(0 0 90px rgb(255, 255, 255))
-    drop-shadow(0 0 120px rgb(255, 255, 255))
-    drop-shadow(0 0 150px rgb(255, 255, 255));
+  filter: url(#advantages-glow);
   opacity: 0.9;
+  will-change: stroke-dashoffset;
+  transform: translateZ(0);
+}
+
+.line-animated.advantages-diagonal-line {
+  animation: advantagesDrawLine 8s ease-out forwards;
 }
 
 @keyframes advantagesDrawLine {
@@ -304,6 +357,30 @@ header {
   align-items: center;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+}
+
+.animated .advantages-dark-container {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+
+.advantage-transparency {
+  position: absolute;
+  color: white;
+  font-size: 48px;
+  top: 20px;
+  font-family: Bebas Neue;
+  text-shadow: 0 0 5px white, 0 0 10px white;
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.animated .advantage-transparency {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease-out 0.2s;
 }
 
 .advantage-years {
@@ -314,15 +391,14 @@ header {
   left: 20px;
   font-family: Bebas Neue;
   text-shadow: 0 0 20px white, 0 0 40px white, 0 0 60px white, 0 0 80px white;
+  opacity: 0;
+  transform: translateX(-100px);
 }
 
-.advantage-transparency {
-  position: absolute;
-  color: white;
-  font-size: 48px;
-  top: 20px;
-  font-family: Bebas Neue;
-  text-shadow: 0 0 5px white, 0 0 10px white;
+.animated .advantage-years {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease-out 0.4s;
 }
 
 .advantage-worktime {
@@ -333,12 +409,27 @@ header {
   right: 10px;
   font-family: Bebas Neue;
   text-shadow: 0 0 20px white, 0 0 40px white, 0 0 60px white, 0 0 80px white;
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.animated .advantage-worktime {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease-out 0.6s;
 }
 
 .advantage-image {
   width: 800px;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.animated .advantage-image {
   opacity: 1;
-  animation: fadeIn 1s ease-out 1s forwards, slowRotate 120s linear infinite;
+  transform: scale(1);
+  transition: all 1s ease-out 0.8s;
+  animation: slowRotate 120s linear infinite 1.8s;
 }
 
 .advantage-specialists {
@@ -349,6 +440,14 @@ header {
   bottom: 350px;
   font-family: Bebas Neue;
   text-shadow: 0 0 5px white, 0 0 10px white;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.animated .advantage-specialists {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease-out 1s;
 }
 
 .advantage-companies {
@@ -359,6 +458,14 @@ header {
   left: 80px;
   font-family: Bebas Neue;
   text-shadow: 0 0 20px white, 0 0 40px white, 0 0 60px white, 0 0 80px white;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.animated .advantage-companies {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease-out 1.2s;
 }
 
 .advantage-economy {
@@ -369,8 +476,17 @@ header {
   font-family: Bebas Neue;
   word-wrap: break-word;
   text-shadow: 0 0 5px white, 0 0 10px white;
+  opacity: 0;
+  transform: translateX(-100px);
 }
 
+.animated .advantage-economy {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease-out 1.4s;
+}
+
+/* Услуги */
 .services {
   margin-top: 50px;
   position: relative;
@@ -385,24 +501,35 @@ header {
   transform: translateY(-50%);
   pointer-events: none;
   z-index: -1;
+  transform: translateZ(0);
+  opacity: 0;
+}
+
+.animated .services-line-container {
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
 }
 
 .services-line-svg {
   width: 100%;
   height: 100%;
   overflow: visible;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .services-horizontal-line {
-  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8))
-    drop-shadow(0 0 40px rgba(255, 255, 255, 0.8))
-    drop-shadow(0 0 60px rgba(255, 255, 255, 0.8))
-    drop-shadow(0 0 80px rgba(255, 255, 255, 0.8));
+  filter: url(#services-glow);
   opacity: 0.9;
   stroke-dasharray: 3000;
   stroke-dashoffset: 3000;
-  animation: servicesDrawHorizontal 9s ease-out forwards;
   stroke-width: 12px;
+  will-change: stroke-dashoffset;
+  transform: translateZ(0);
+}
+
+.line-animated.services-horizontal-line {
+  animation: servicesDrawHorizontal 9s ease-out forwards;
 }
 
 @keyframes servicesDrawHorizontal {
@@ -416,6 +543,15 @@ header {
   right: -350px;
   top: -200px;
   z-index: -1;
+  opacity: 0;
+  transform: translateX(200px) rotate(180deg);
+}
+
+.animated .services-abstract {
+  opacity: 1;
+  transform: translateX(0) rotate(0);
+  transition: all 1.5s ease-out;
+  animation: slowRotate 120s linear infinite 1.5s;
 }
 
 .services__container {
@@ -437,7 +573,14 @@ header {
 
   position: relative;
   overflow: hidden;
+  opacity: 0;
 }
+
+.animated .services__container {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
 .services {
   margin-top: 100px;
 }
@@ -447,6 +590,14 @@ header {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.animated .services__header {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease-out;
 }
 
 .services__header h1 {
@@ -493,6 +644,14 @@ header {
     rgba(12.84, 32.1, 143, 0.25) 100%
   );
   border-radius: 60px;
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.animated .service-card-row-1 {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease-out 0.2s;
 }
 
 .service-card-row-2 {
@@ -511,6 +670,14 @@ header {
     rgba(12.84, 32.1, 143, 0.25) 100%
   );
   border-radius: 60px;
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.animated .service-card-row-2 {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease-out 0.4s;
 }
 
 .service-card-row2-1 {
@@ -529,6 +696,14 @@ header {
     rgba(12.84, 32.1, 143, 0.25) 100%
   );
   border-radius: 60px;
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.animated .service-card-row2-1 {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease-out 0.6s;
 }
 
 .service-card-row2-2 {
@@ -547,6 +722,14 @@ header {
     rgba(12.84, 32.1, 143, 0.25) 100%
   );
   border-radius: 60px;
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.animated .service-card-row2-2 {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease-out 0.8s;
 }
 
 .service-card__title {
@@ -554,7 +737,6 @@ header {
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
-
   color: #ffffff;
 }
 
@@ -562,23 +744,57 @@ header {
   font-size: 24px;
 }
 
-.more-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 200px;
-  margin-bottom: 200px;
-  gap: 5px;
+/* 3D модель */
+.model-container {
+  opacity: 0;
+  transform: scale(0.8);
 }
 
-.more-info a {
-  text-decoration-line: none;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 64px;
-  line-height: 60px;
-  text-align: center;
-  color: #ffffff;
-  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.45);
+.animated .model-container {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 1s ease-out;
+}
+
+
+.title-model-section {
+font-size: 100px;
+font-weight: bolder;
+text-align: center;
+}
+
+
+@media (max-width: 768px) {
+  .support-hero h1 {
+    font-size: 36px;
+    width: 100%;
+    line-height: 1.2;
+  }
+
+  .support-hero p {
+    font-size: 18px;
+    width: 100%;
+  }
+
+  .services__flex-1,
+  .services__flex-2 {
+    flex-direction: column;
+  }
+
+  .service-card-row-1,
+  .service-card-row-2,
+  .service-card-row2-1,
+  .service-card-row2-2 {
+    width: 100%;
+    height: auto;
+  }
+
+  .advantage-years,
+  .advantage-worktime {
+    font-size: 48px;
+  }
+
+  .advantage-companies {
+    font-size: 36px;
+  }
 }
